@@ -1,6 +1,7 @@
 var parser = require('parse-rss');
 var RSS = require('rss');
-var moment = require('moment');
+var moment = require('moment-timezone');
+moment.tz.setDefault("America/New_York");
 var fs = require('co-fs');
 var sevenAm = 7;
 var lastSeen = {
