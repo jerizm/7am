@@ -12,9 +12,9 @@ module.exports.feed = function *feed() {
   var current_date = now.date();
   var current_hour = now.hour();
   var feed = '';
-  if(entry === null || (current_hour === sevenAm && lastSeen.date !== current_date))
+  if(current_hour === sevenAm && lastSeen.date !== current_date)
   {
-    var result = yield parseRss('http://www.npr.org/rss/podcast.php?id=500005');
+    var result = yield parseRss('http://www.npr.org/rss/podcast.php?id=500001&');
     var entry = result[0];
     var pubdate = moment(entry.pubdate);
     lastSeen.date = pubdate.date();
