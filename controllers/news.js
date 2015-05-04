@@ -27,8 +27,12 @@ module.exports.feed = function *feed() {
     feed = yield fs.readFile('cache.json', 'utf8');
 
   }
-  this.body = feed;
   this.set('content-type', 'text/xml;charset=UTF-8');
+  this.set('cache-control', 'max-age=0');
+  var today = new Date();
+  var UTCstring = today.toUTCString();
+  this.set('expires', UTCstring);
+  this.body = feed;
 };
 
 function createFeed(item){
@@ -37,6 +41,7 @@ function createFeed(item){
     title: '7AM ET News Summary',
     description: '<![CDATA[ A five-minute NPR News summary you can take with you. ]]>',
     image_url: 'http://media.npr.org/images/podcasts/2013/primary/7am_et_news_summary-72638a510ea23591a0e39f18db4188bc7fd58e24.png?s=200',
+    link: 'http://www.npr.org/templates/topics/topic.php?topicId=1001',
     copyright: 'Copyright 2007 NPR - For Personal Use Only',
     language: 'en-us',
     categories: ['News & Politics'],
