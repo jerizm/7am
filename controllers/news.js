@@ -3,7 +3,7 @@ var RSS = require('rss');
 var moment = require('moment-timezone');
 moment.tz.setDefault("America/New_York");
 var fs = require('co-fs');
-var sevenAm = 7;
+var newsTimes = [7, 17];
 var lastSeen = {
   date: -1
 };
@@ -13,7 +13,8 @@ module.exports.feed = function *feed() {
   var current_date = now.date();
   var current_hour = now.hour();
   var feed = '';
-  if(current_hour === sevenAm && lastSeen.date !== current_date)
+  if(newsTimes.indexOf(current_hour) >= 0
+    && lastSeen.date !== current_date)
   {
     var result = yield parseRss('http://www.npr.org/rss/podcast.php?id=500005');
     var entry = result[0];
@@ -22,10 +23,8 @@ module.exports.feed = function *feed() {
     feed = createFeed(entry).xml();
     fs.writeFile('cache.json', feed);
   }
-  else
-  {
+  else if(feed === ''){
     feed = yield fs.readFile('cache.json', 'utf8');
-
   }
   this.set('content-type', 'text/xml;charset=UTF-8');
   this.set('cache-control', 'max-age=0');
