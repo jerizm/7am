@@ -13,12 +13,12 @@ module.exports.feed = function *feed() {
   var current = current_hour + '' + current_date;
   var feed = '';
   if(newsTimes.indexOf(current_hour) >= 0
-    && lastSeen.date !== current)
+    && lastSeen !== current)
   {
     var result = yield parseRss('http://www.npr.org/rss/podcast.php?id=500005');
     var entry = result[0];
     var pubdate = moment(entry.pubdate);
-    lastSeen.date = current;
+    lastSeen = current;
     feed = createFeed(entry).xml();
     fs.writeFile('cache.json', feed);
   }
