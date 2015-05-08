@@ -4,22 +4,21 @@ var moment = require('moment-timezone');
 moment.tz.setDefault("America/New_York");
 var fs = require('co-fs');
 var newsTimes = [7, 17];
-var lastSeen = {
-  date: -1
-};
+var lastSeen = null;
 
 module.exports.feed = function *feed() {
   var now = moment();
   var current_date = now.date();
   var current_hour = now.hour();
+  var current = current_hour + '' + current_date;
   var feed = '';
   if(newsTimes.indexOf(current_hour) >= 0
-    && lastSeen.date !== current_date)
+    && lastSeen.date !== current)
   {
     var result = yield parseRss('http://www.npr.org/rss/podcast.php?id=500005');
     var entry = result[0];
     var pubdate = moment(entry.pubdate);
-    lastSeen.date = pubdate.date();
+    lastSeen.date = current;
     feed = createFeed(entry).xml();
     fs.writeFile('cache.json', feed);
   }
