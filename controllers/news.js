@@ -1,42 +1,45 @@
 var parser = require('parse-rss');
 var RSS = require('rss');
 var moment = require('moment-timezone');
-moment.tz.setDefault("America/New_York");
+var timezone = 'America/New_York';
 var fs = require('co-fs');
 var newsTimes = [7, 17];
 var lastSeen = null;
 
 module.exports.feed = function *feed() {
-  var now = moment();
-  var current_date = now.date();
-  var current_hour = now.hour();
-  var current = current_hour + '' + current_date;
-  var feed = '';
-  if(newsTimes.indexOf(current_hour) >= 0
-    && lastSeen !== current)
+  var now = moment.tz(timezone);
+  var date = now.date();
+  var hour = now.hour();
+  var current = hour + '' + date;
+  var xmlFeed = '';
+  if(newsTimes.indexOf(hour) >= 0 &&
+    lastSeen !== current)
   {
     var result = yield parseRss('http://www.npr.org/rss/podcast.php?id=500005');
     var entry = result[0];
-    var pubdate = moment(entry.pubdate);
-    lastSeen = current;
-    feed = createFeed(entry).xml();
-    fs.writeFile('cache.json', feed);
+    var pubdate = moment.tz(entry.pubdate, timezone);
+    // check if it's actually newsTimes
+    if(newsTimes.indexOf(pubdate.hour()) >= 0) {
+      lastSeen = current;
+      xmlFeed = createFeed(entry, pubdate).xml();
+      fs.writeFile('cache.json', feed);
+    }
   }
-  else if(feed === ''){
-    feed = yield fs.readFile('cache.json', 'utf8');
+  else if(xmlFeed === ''){
+    xmlFeed = yield fs.readFile('cache.json', 'utf8');
   }
   this.set('content-type', 'text/xml;charset=UTF-8');
   this.set('cache-control', 'max-age=0');
   var today = new Date();
   var UTCstring = today.toUTCString();
   this.set('expires', UTCstring);
-  this.body = feed;
+  this.body = xmlFeed;
 };
 
-function createFeed(item){
+function createFeed(item, pubdate){
   /* lets create an rss feed */
-  var feed = new RSS({
-    title: '7AM ET News Summary',
+  var rssFeed = new RSS({
+    title: '7AM + 5PM ET News Summary',
     description: '<![CDATA[ A five-minute NPR News summary you can take with you. ]]>',
     image_url: 'http://media.npr.org/images/podcasts/2013/primary/7am_et_news_summary-72638a510ea23591a0e39f18db4188bc7fd58e24.png?s=200',
     link: 'http://www.npr.org/templates/topics/topic.php?topicId=1001',
@@ -68,7 +71,7 @@ function createFeed(item){
       ]}
     ]
   });
-  feed.item({
+  rssFeed.item({
     title: item.title,
     description: item.description,
     url: item.enclosures[0].url,
@@ -78,7 +81,7 @@ function createFeed(item){
     enclosure: item.enclosures[0],
     custom_elements: [
       {'itunes:author': 'NPR'},
-      {'itunes:subtitle': 'NPR 7AM News Summary'},
+      {'itunes:subtitle': 'NPR ' + pubdate.format('HA') + ' News Summary'},
       {'itunes:image': {
         _attr: {
           href: 'http://media.npr.org/images/podcasts/2013/primary/7am_et_news_summary-72638a510ea23591a0e39f18db4188bc7fd58e24.png?s=1400'
@@ -86,7 +89,7 @@ function createFeed(item){
       }}
     ]
   });
-  return feed;
+  return rssFeed;
 }
 
 function parseRss(url) {
