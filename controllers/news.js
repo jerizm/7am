@@ -3,7 +3,7 @@ var RSS = require('rss');
 var moment = require('moment-timezone');
 var timezone = 'America/New_York';
 var fs = require('co-fs');
-var newsTimes = [7, 17];
+var newsTimes = [18, 17];
 var lastSeen = null;
 
 module.exports.feed = function *feed() {
@@ -22,7 +22,7 @@ module.exports.feed = function *feed() {
     if(newsTimes.indexOf(pubdate.hour()) >= 0) {
       lastSeen = current;
       xmlFeed = createFeed(entry, pubdate).xml();
-      fs.writeFile('cache.json', feed);
+      fs.writeFile('cache.json', xmlFeed);
     }
   }
   else if(xmlFeed === ''){
