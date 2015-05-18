@@ -3,7 +3,7 @@ var RSS = require('rss');
 var moment = require('moment-timezone');
 var timezone = 'America/New_York';
 var fs = require('co-fs');
-var newsTimes = [18, 17];
+var newsTimes = [7, 17];
 var lastSeen = null;
 
 module.exports.feed = function *feed() {
