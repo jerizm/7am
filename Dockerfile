@@ -1,7 +1,7 @@
 FROM node:0.12
 
 RUN mkdir -p /web
-ADD . /web/
+ADD app/* /web/
 WORKDIR /web
 RUN npm install
 RUN chmod +x /web/run.sh
