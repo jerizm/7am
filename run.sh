@@ -1,3 +1,3 @@
 #!/bin/sh
 
-node --harmony /web/app.js
+node --harmony /web/dist/app.js
