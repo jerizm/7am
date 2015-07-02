@@ -1,3 +1,3 @@
 #!/bin/sh
 
-node --harmony /web/dist/app.js
+node --harmony /web/src/index.es6

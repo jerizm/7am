@@ -1,7 +1,6 @@
 /*jshint camelcase: false */
-
-let parser = require('parse-rss');
-let RSS = require('rss');
+import parser from 'parse-rss';
+import RSS from 'rss';
 
 export let parseRss = function parseRss(url) {
   return (callback) => {
