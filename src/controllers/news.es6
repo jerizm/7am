@@ -3,6 +3,10 @@ import fs from 'co-fs';
 import {parseRss, createFeed} from '../utility';
 import debug from 'debug';
 import config from '../config/init';
+import bunyan from 'bunyan';
+
+let log = bunyan.createLogger({name: "7am"});
+
 
 export let feed = function *feed() {
   let now = moment.tz(config.timezone);
@@ -21,12 +25,14 @@ export let getLatestFeed = function *getLatestFeed() {
   if (config.newsTime.indexOf(now.hour()) &&
     lastSeen !== current) {
     let xmlFeed = '';
+    log.info('fetching news @ ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a'));
     let result = yield parseRss(config.newsUrl);
     let entry = result[0];
     let pubdate = moment.tz(entry.pubdate, config.timezone);
     // check if it's actually newsTimes
     if (config.newsTime.indexOf(pubdate.hour()) >= 0) {
       debug('dev')('getting feed ' + pubdate);
+      log.info('got feed @ ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a'));
       lastSeen = current;
       xmlFeed = createFeed(entry, pubdate).xml();
       fs.writeFile(config.cacheFile, xmlFeed);

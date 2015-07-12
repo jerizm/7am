@@ -8,6 +8,7 @@ import requests from 'koa-log-requests';
 import debug from 'debug';
 import co from 'co';
 import config from './config/init';
+import ua from 'universal-analytics-koa';
 
 const app = module.exports = koa();
 const port = (process.env.PORT || 3000);
@@ -23,8 +24,13 @@ setInterval(() => {
   });
 }, config.interval);
 
+app.use(ua.koa('UA-65047623-1'));
+
 // Logger
-app.use(logger());
+if (process.env === 'dev') {
+  app.use(logger());
+}
+
 app.use(requests());
 app.use(responseTime);
 
