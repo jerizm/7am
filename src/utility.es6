@@ -11,7 +11,7 @@ export let parseRss = function parseRss(url) {
 export let createFeed = function createFeed(item, pubdate) {
   /* lets create an rss feed */
   let rssFeed = new RSS({
-    title: '7AM + 5PM ET News Summary',
+    title: '7AM ET News Summary',
     description: '<![CDATA[ A five-minute NPR News ' +
       ' summary you can take with you. ]]>',
     image_url: 'http://media.npr.org/images/podcasts/2013/primary/' +
