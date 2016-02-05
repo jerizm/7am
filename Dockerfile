@@ -1,4 +1,4 @@
-FROM node:0.12
+FROM node:latest
 
 RUN mkdir -p /web
 ADD . /web/
