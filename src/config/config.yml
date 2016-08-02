@@ -1,6 +1,0 @@
-newsTime:
-  - 7
-timezone: 'America/New_York'
-newsUrl: 'http://www.npr.org/rss/podcast.php?id=500005'
-cacheFile: 'src/cache.json'
-interval: 300000
