@@ -1,4 +1,4 @@
-package sevenam
+package main
 
 import (
   "fmt"
@@ -6,7 +6,11 @@ import (
   "net/http"
   "github.com/gorilla/mux"
   "io/ioutil"
+  "regexp"
+  "github.com/jasonlvhit/gocron"
+  "time"
 )
+
 var config *serverConfig
 
 func main() {
@@ -15,6 +19,8 @@ func main() {
   if err != nil {
     log.Fatal(err)
   }
+
+  gocron.Every(5).Minutes().Do(GetNews)
 
   r := mux.NewRouter()
   r.HandleFunc("/", RssHandler).
@@ -25,12 +31,40 @@ func main() {
 }
 
 func RssHandler(w http.ResponseWriter, r *http.Request) {
-  resp, err := http.Get(config.NewsUrl)
-  if err != nil {
-    fmt.Fprintf(w, "%+v\n", err)
-  }
-  defer resp.Body.Close()
-  body, err := ioutil.ReadAll(resp.Body)
-  fmt.Fprintf(w, "%s", body)
+  cache, err := ioutil.ReadFile(config.CacheFile)
+  check(err)
+  fmt.Fprintf(w, string(cache))
 }
 
+func GetNews() {
+  if GetEst().Hour() != 7 {
+    return
+  }
+  resp, err := http.Get(config.NewsUrl)
+  check(err)
+  defer resp.Body.Close()
+
+  body, err := ioutil.ReadAll(resp.Body)
+  check(err)
+
+  match, err := regexp.Match("7AM ET", body)
+  check(err)
+
+  if match {
+    err = ioutil.WriteFile(config.CacheFile, body, 0644)
+    check(err)
+  }
+}
+
+func GetEst() (hour time.Time) {
+  t := time.Now()
+  est, err := time.LoadLocation("America/New_York")
+  check(err)
+  return t.In(est)
+}
+
+func check(e error) {
+  if e != nil {
+    panic(e)
+  }
+}
