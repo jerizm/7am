@@ -22,6 +22,8 @@ func main() {
 
   gocron.Every(5).Minutes().Do(GetNews)
 
+  <- gocron.Start()
+
   r := mux.NewRouter()
   r.HandleFunc("/", RssHandler).
   Methods("GET")
