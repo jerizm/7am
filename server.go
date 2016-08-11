@@ -20,9 +20,10 @@ func main() {
     log.Fatal(err)
   }
 
+  GetNews()
   gocron.Every(5).Minutes().Do(GetNews)
 
-  <- gocron.Start()
+  go gocron.Start()
 
   r := mux.NewRouter()
   r.HandleFunc("/", RssHandler).
@@ -39,6 +40,7 @@ func RssHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetNews() {
+  log.Print("getting news")
   if GetEst().Hour() != 7 {
     return
   }
