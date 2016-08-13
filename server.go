@@ -36,6 +36,9 @@ func main() {
 func RssHandler(w http.ResponseWriter, r *http.Request) {
 	cache, err := ioutil.ReadFile(config.CacheFile)
 	check(err)
+
+	w.Header().Set("Cache-Control", "max-age=0")
+	w.Header().Set("Expires", time.Now().Format(http.TimeFormat))
 	fmt.Fprintf(w, string(cache))
 }
 

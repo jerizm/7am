@@ -1,2 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"><channel><title><![CDATA[7AM ET News Summary]]></title><description><![CDATA[<![CDATA[ A five-minute NPR News  summary you can take with you. ]]]]><![CDATA[>]]></description><link>http://github.com/dylang/node-rss</link><image><url>http://media.npr.org/images/podcasts/2013/primary/7am_et_news_summary-72638a510ea23591a0e39f18db4188bc7fd58e24.png?s=200</url><title>7AM ET News Summary</title><link></link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 10 Aug 2016 11:08:46 GMT</lastBuildDate><pubDate>Sun, 20 May 2012 04:00:00 GMT</pubDate><copyright><![CDATA[Copyright 2007 NPR - For Personal Use Only]]></copyright><language><![CDATA[en-us]]></language><ttl>60</ttl><category><![CDATA[News & Politics]]></category><itunes:subtitle>&lt;![CDATA[ A five-minute NPR News summary you can take with you. ]]&gt;</itunes:subtitle><itunes:author>NPR</itunes:author><itunes:summary>&lt;![CDATA[ A five-minute NPR News summary you can take with you. ]]&gt;</itunes:summary><itunes:owner><itunes:name></itunes:name><itunes:email></itunes:email></itunes:owner><itunes:image href="http://media.npr.org/images/podcasts/2013/primary/7am_et_news_summary-72638a510ea23591a0e39f18db4188bc7fd58e24.png?s=1400"/><itunes:category text="News &amp; Politics"></itunes:category><item><title><![CDATA[NPR News: 08-10-2016 7AM ET]]></title><description><![CDATA[NPR News: 08-10-2016 7AM ET]]></description><link>http://play.podtrac.com/npr-500005/npr.mc.tritondigital.com/NPR_500005/media/anon.npr-mp3/npr/newscasts/2016/08/10/news.mp3?orgId=1&amp;d=300&amp;p=500005&amp;story=489444489&amp;t=podcast&amp;e=489444489&amp;ft=pod&amp;f=500005</link><guid isPermaLink="false">http://play.podtrac.com/npr-500005/npr.mc.tritondigital.com/NPR_500005/media/anon.npr-mp3/npr/newscasts/2016/08/10/news.mp3?orgId=1&amp;d=300&amp;p=500005&amp;story=489444489&amp;t=podcast&amp;e=489444489&amp;ft=pod&amp;f=500005</guid><category><![CDATA[News & Politics]]></category><pubDate>Wed, 10 Aug 2016 11:00:00 GMT</pubDate><enclosure url="http://play.podtrac.com/npr-500005/npr.mc.tritondigital.com/NPR_500005/media/anon.npr-mp3/npr/newscasts/2016/08/10/news.mp3?orgId=1&amp;d=300&amp;p=500005&amp;story=489444489&amp;t=podcast&amp;e=489444489&amp;ft=pod&amp;f=500005" length="0" type="false"/><itunes:author>NPR</itunes:author><itunes:subtitle>NPR 7AM News Summary</itunes:subtitle><itunes:image href="http://media.npr.org/images/podcasts/2013/primary/7am_et_news_summary-72638a510ea23591a0e39f18db4188bc7fd58e24.png?s=1400"/></item></channel></rss>
+<rss xmlns:npr="http://www.npr.org/rss/" xmlns:nprml="http://api.npr.org/nprml" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Hourly News Summary</title>
+    <link>http://www.npr.org/templates/topics/topic.php?topicId=1001</link>
+    <description><![CDATA[Five minutes of NPR news, updated hourly.]]></description>
+    <copyright>Copyright 2007 NPR - For Personal Use Only</copyright>
+    <generator>NPR API RSS Generator 0.94</generator>
+    <language>en-us</language>
+    <itunes:summary><![CDATA[Five minutes of NPR news, updated hourly.]]></itunes:summary>
+    <itunes:subtitle><![CDATA[Five minutes of NPR news, updated hourly.]]></itunes:subtitle>
+    <itunes:author>NPR</itunes:author>
+    <itunes:block>no</itunes:block>
+    <itunes:owner>
+      <itunes:email/>
+      <itunes:name/>
+    </itunes:owner>
+    <itunes:category text="News &amp; Politics"/>
+    <itunes:image href="https://media.npr.org/images/podcasts/2013/primary/hourly_news_summary-c464279737c989a5fbf3049bc229152af3c36b9d.png?s=1400"/>
+    <image>
+      <url>https://media.npr.org/images/podcasts/2013/primary/hourly_news_summary-c464279737c989a5fbf3049bc229152af3c36b9d.png?s=200</url>
+      <title>Hourly News Summary</title>
+      <link>http://www.npr.org/templates/topics/topic.php?topicId=1001</link>
+    </image>
+    <lastBuildDate>Sat, 13 Aug 2016 07:00:00 -0400</lastBuildDate>
+    <item>
+      <title>NPR News: 08-13-2016 7AM ET</title>
+      <description><![CDATA[NPR News: 08-13-2016 7AM ET]]></description>
+      <pubDate>Sat, 13 Aug 2016 07:00:00 -0400</pubDate>
+      <copyright>Copyright 2007 NPR - For Personal Use Only</copyright>
+      <guid>6ffd8fd1-74a1-4f49-83ca-d2aafe3f2242</guid>
+      <itunes:author>NPR</itunes:author>
+      <itunes:summary><![CDATA[NPR News: 08-13-2016 7AM ET]]></itunes:summary>
+      <itunes:subtitle><![CDATA[NPR News: 08-13-2016 7AM ET]]></itunes:subtitle>
+      <itunes:duration>300</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <enclosure url="http://play.podtrac.com/npr-500005/npr.mc.tritondigital.com/NPR_500005/media/anon.npr-mp3/npr/newscasts/2016/08/13/newscast070631.mp3?orgId=1&amp;d=300&amp;p=500005&amp;story=489879402&amp;t=podcast&amp;e=489879402&amp;ft=pod&amp;f=500005" length="0" type="audio/mpeg"/>
+    </item>
+  </channel>
+</rss>
