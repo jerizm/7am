@@ -1,21 +1,24 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/jasonlvhit/gocron"
+	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"path"
 	"regexp"
 	"time"
 )
 
-var config *serverConfig
+var config *ServerConfig
 
 func main() {
 	var err error
-	config, err = readConfig("config.yml")
+	config, err = ReadConfig("config.yml")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,6 +61,8 @@ func GetNews() {
 	check(err)
 
 	if match {
+		reg := regexp.MustCompile("https://www.npr.org/rss/podcast.php\\?id=500005")
+		body = reg.ReplaceAll(body, []byte("https://7news.randomthings.io"))
 		err = ioutil.WriteFile(config.CacheFile, body, 0644)
 		check(err)
 	}
@@ -74,4 +79,52 @@ func check(e error) {
 	if e != nil {
 		panic(e)
 	}
+}
+
+type ServerConfig struct {
+	NewsUrl   string
+	CacheFile string
+	Interval  int
+}
+
+func (c *ServerConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var aux struct {
+		NewsUrl   string `yaml:"newsUrl"`
+		CacheFile string `yaml:"cacheFile"`
+		Interval  int    `yaml:"interval"`
+	}
+
+	if err := unmarshal(&aux); err != nil {
+		return err
+	}
+	if aux.NewsUrl == "" {
+		return errors.New("config: invalid `NewsUrl`")
+	}
+	if aux.CacheFile == "" {
+		aux.CacheFile = "cache.json"
+	}
+	if aux.Interval == 0 {
+		aux.Interval = 300000
+	}
+
+	c.NewsUrl = aux.NewsUrl
+	c.CacheFile = aux.CacheFile
+	c.Interval = aux.Interval
+	return nil
+}
+
+func ReadConfig(file string) (*ServerConfig, error) {
+	configFile := path.Join(file)
+
+	data, err := ioutil.ReadFile(configFile)
+	if err != nil {
+		return nil, err
+	}
+
+	var config ServerConfig
+	if err := yaml.Unmarshal(data, &config); err != nil {
+		return nil, err
+	}
+
+	return &config, nil
 }

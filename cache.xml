@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:npr="http://www.npr.org/rss/" xmlns:nprml="http://api.npr.org/nprml" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+<rss xmlns:npr="https://www.npr.org/rss/" xmlns:nprml="https://api.npr.org/nprml" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <title>Hourly News Summary</title>
     <link>http://www.npr.org/templates/topics/topic.php?topicId=1001</link>
@@ -7,12 +7,13 @@
     <copyright>Copyright 2007 NPR - For Personal Use Only</copyright>
     <generator>NPR API RSS Generator 0.94</generator>
     <language>en-us</language>
+    <itunes:new-feed-url>https://7news.randomthings.io</itunes:new-feed-url>
     <itunes:summary><![CDATA[Five minutes of NPR news, updated hourly.]]></itunes:summary>
     <itunes:subtitle><![CDATA[Five minutes of NPR news, updated hourly.]]></itunes:subtitle>
     <itunes:author>NPR</itunes:author>
     <itunes:block>no</itunes:block>
     <itunes:owner>
-      <itunes:email/>
+      <itunes:email>PodCasts@npr.org</itunes:email>
       <itunes:name/>
     </itunes:owner>
     <itunes:category text="News &amp; Politics"/>
@@ -22,19 +23,19 @@
       <title>Hourly News Summary</title>
       <link>http://www.npr.org/templates/topics/topic.php?topicId=1001</link>
     </image>
-    <lastBuildDate>Sat, 13 Aug 2016 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jun 2017 18:00:00 -0400</lastBuildDate>
     <item>
-      <title>NPR News: 08-13-2016 7AM ET</title>
-      <description><![CDATA[NPR News: 08-13-2016 7AM ET]]></description>
-      <pubDate>Sat, 13 Aug 2016 07:00:00 -0400</pubDate>
+      <title>NPR News: 06-12-2017 6PM ET</title>
+      <description><![CDATA[NPR News: 06-12-2017 6PM ET]]></description>
+      <pubDate>Mon, 12 Jun 2017 18:00:00 -0400</pubDate>
       <copyright>Copyright 2007 NPR - For Personal Use Only</copyright>
-      <guid>6ffd8fd1-74a1-4f49-83ca-d2aafe3f2242</guid>
+      <guid>59c5677d-2af8-485b-94b6-f362e908e974</guid>
       <itunes:author>NPR</itunes:author>
-      <itunes:summary><![CDATA[NPR News: 08-13-2016 7AM ET]]></itunes:summary>
-      <itunes:subtitle><![CDATA[NPR News: 08-13-2016 7AM ET]]></itunes:subtitle>
+      <itunes:summary><![CDATA[NPR News: 06-12-2017 6PM ET]]></itunes:summary>
+      <itunes:subtitle><![CDATA[NPR News: 06-12-2017 6PM ET]]></itunes:subtitle>
       <itunes:duration>300</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
-      <enclosure url="http://play.podtrac.com/npr-500005/npr.mc.tritondigital.com/NPR_500005/media/anon.npr-mp3/npr/newscasts/2016/08/13/newscast070631.mp3?orgId=1&amp;d=300&amp;p=500005&amp;story=489879402&amp;t=podcast&amp;e=489879402&amp;ft=pod&amp;f=500005" length="0" type="audio/mpeg"/>
+      <enclosure url="https://play.podtrac.com/npr-500005/npr.mc.tritondigital.com/NPR_500005/media/anon.npr-mp3/npr/newscasts/2017/06/12/newscast180628.mp3?orgId=1&amp;d=300&amp;p=500005&amp;story=532666991&amp;t=podcast&amp;e=532666991&amp;ft=pod&amp;f=500005" length="0" type="audio/mpeg"/>
     </item>
   </channel>
 </rss>
